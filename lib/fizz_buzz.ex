@@ -6,11 +6,14 @@ defmodule FizzBuzz do
   end
 
   defp handle_file_read({:ok, result}) do
-    result
-    |> String.trim()
-    |> String.split(",")
-    |> Enum.map(&String.to_integer/1)
-    |> Enum.map(&evaluate_number/1)
+    result =
+      result
+      |> String.trim()
+      |> String.split(",")
+      |> Enum.map(&String.to_integer/1)
+      |> Enum.map(&evaluate_number/1)
+
+    {:ok, result}
   end
 
   defp handle_file_read({:error, reason}), do: "Error reading the file: #{reason}"
